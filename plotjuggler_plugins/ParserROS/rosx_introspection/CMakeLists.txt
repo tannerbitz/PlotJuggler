@@ -22,6 +22,7 @@ add_library(rosx_introspection STATIC
     src/deserializer.cpp
     )
 
+find_package(fastcdr REQUIRED)
 target_link_libraries(rosx_introspection PRIVATE fastcdr )
 
 target_include_directories(rosx_introspection PUBLIC

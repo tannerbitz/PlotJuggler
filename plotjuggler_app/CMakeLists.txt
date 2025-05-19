@@ -107,19 +107,24 @@ add_executable(plotjuggler
     ${BACKWARD_ENABLE} )
 
 if (NOT WIN32)
-    add_backward(plotjuggler)
+    find_package(Backward REQUIRED)
+    target_link_libraries(plotjuggler
+        Backward::Backward
+    )
 endif()
+
+find_package(nlohmann_json REQUIRED)
 
 target_link_libraries(plotjuggler
     ${QT_LINK_LIBRARIES}
     colorwidgets
     qt_advanced_docking
     plotjuggler_base
-    plotjuggler_qwt
+    qwt::qwt
     QCodeEditor
-    nlohmann_json
-    lua
-    sol2
+    nlohmann_json::nlohmann_json
+    lua::lua
+    sol2::sol2
     )
 
 if(COMPILING_WITH_AMENT)

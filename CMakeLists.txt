@@ -130,7 +130,6 @@ include_directories(
     ${Qt5OpenGL_INCLUDE_DIRS}
     ./3rdparty/color_widgets/include
     ./3rdparty/Qt-Advanced-Docking/include
-    ./3rdparty/qwt/src
     ./3rdparty/QCodeEditor/include
 )
 
@@ -164,9 +163,9 @@ add_library(plotjuggler_base STATIC
 )
 
 target_link_libraries(plotjuggler_base PUBLIC
-    plotjuggler_qwt
-    lua
-    sol2
+    qwt::qwt
+    lua::lua
+    sol2::sol2
 )
 
 target_include_directories(plotjuggler_base INTERFACE
@@ -184,7 +183,6 @@ if(COMPILING_WITH_AMENT)
 
     ament_export_targets(
         ${PROJECT_NAME}Targets
-        export_plotjuggler_qwt
         HAS_LIBRARY_TARGET)
     ament_package()
 
@@ -210,15 +208,20 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/plotjuggler.svg
 include(FetchContent)
 include(cmake/CPM.cmake)
 
+find_package(lua REQUIRED)
+find_package(sol2 REQUIRED)
+find_package(qwt REQUIRED)
+
 add_subdirectory( 3rdparty )
 add_subdirectory( plotjuggler_app )
 add_subdirectory( plotjuggler_plugins)
+
 
 # Install targets
 
 install(
      TARGETS
-        plotjuggler_base plotjuggler_qwt lua sol2
+        plotjuggler_base
      EXPORT ${PROJECT_NAME}Targets
      LIBRARY DESTINATION lib
      ARCHIVE DESTINATION lib

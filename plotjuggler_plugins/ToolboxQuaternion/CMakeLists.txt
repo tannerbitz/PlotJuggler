@@ -17,6 +17,6 @@ target_link_libraries(ToolboxQuaternion
     ${Qt5Widgets_LIBRARIES}
     ${Qt5Xml_LIBRARIES}
     plotjuggler_base
-    plotjuggler_qwt)
+    qwt::qwt)
 
 install(TARGETS ToolboxQuaternion DESTINATION ${PJ_PLUGIN_INSTALL_DIRECTORY}  )

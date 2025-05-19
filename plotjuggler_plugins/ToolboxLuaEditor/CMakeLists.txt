@@ -18,7 +18,7 @@ target_link_libraries(ToolboxLuaEditor
     ${Qt5Widgets_LIBRARIES}
     ${Qt5Xml_LIBRARIES}
     plotjuggler_base
-    plotjuggler_qwt
+    qwt::qwt
     QCodeEditor
     )
 

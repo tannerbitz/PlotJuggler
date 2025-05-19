@@ -38,7 +38,7 @@ if( Protobuf_FOUND)
         ${Qt5Xml_LIBRARIES}
         ${Protobuf_LIBS}
         plotjuggler_base
-        plotjuggler_qwt)
+        qwt::qwt)
 
     install(TARGETS ProtobufParser DESTINATION ${PJ_PLUGIN_INSTALL_DIRECTORY}  )
 else()
